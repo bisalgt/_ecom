@@ -96,4 +96,16 @@ def remove_from_cart(request, id):
     print('That user donot have any orders')
     return redirect('detail_item', id=id)
         
-        
+def order_summary(request):
+    print(request.user)
+    user = request.user
+    # order = Order.objects.all()
+    order = Order.objects.get(user=request.user, ordered=False)
+    print(order.items.all())
+    for order_item in order.items.all():
+        print(order_item.item.title)
+        print(order_item.item.price)
+        print(order_item.quantity)
+
+    return render(request, 'order_summary.html', {'order': order})
+    

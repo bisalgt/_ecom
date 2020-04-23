@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table >
+    <caption>Order summary</caption>
+    <tr>
+      <th>user</th>
+      <th>item</th>
+      <th>quantity</th>
+      <th>price</th>
+      <th>Total</th>
+    </tr>
+    {% for order_item in order.items.all %}
+    <tr>
+        <td>{{order_item.user}}</td>
+        <td>{{order_item.item.title}}</td>
+        <td>{{order_item.quantity}}</td>
+        <td>{{order_item.item.price}}</td>
+        <td>{{order.get_total_items_sum}}</td>
+      </tr>
+    {% endfor %}
+      </table>
+{% endblock content %}

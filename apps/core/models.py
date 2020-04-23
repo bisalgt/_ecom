@@ -46,10 +46,10 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.user}: {self.items}'
+        return f'{self.user} order'
 
     def get_total_items(self):
-        return self.items.all()
+        return f'{self.items.all()}'
     
     def get_total_items_sum(self):
-        return sum(list(self.items.all()))
+        return sum([order_item.item.price*order_item.quantity for order_item in self.items.all()])
