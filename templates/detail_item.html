@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href={% url 'list_item' %}>List of items</a>
+    <p> {{item.title}}</p>
+    <p> {{item.price}}</p>
+    <a href="{{item.get_absolute_url}}update/">Update item</a>
+    <a href="{{item.get_absolute_url}}delete/">Delete item</a>
+    <a href="{{item.get_add_to_cart_url}}">Add to CART</a>
+    <a href="{{item.get_remove_from_cart_url}}">Remove from CART</a>
+
+<h4>Shopping cart Detail</h4>
+<p>{{request.user.order_set}}</p>
+
+{% endblock content %}

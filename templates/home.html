@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+</head>
+<body>
+    <h1> Home Page</h1>
+    {% block content %}
+        <h1>Item List</h1>
+        {% for item in items %}
+            <p> <a href="{{item.get_absolute_url}}">{{item.title}}</a></p>
+            <p>{{item.price}}</p>
+        {% endfor %}
+    {%endblock content%}
+
+    {% if form %}
+        <form method='POST'>
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="SAVE">
+        </form>
+    {% endif %}
+</body>
+</html>
